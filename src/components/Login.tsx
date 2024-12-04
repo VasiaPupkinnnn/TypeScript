@@ -2,7 +2,7 @@ import { SyntheticEvent, useState } from 'react';
 import LabelWithInput from './LabelWithInput';
 import axios from 'axios';
 import useLocalStorage from '../effects/useLocalStorage';
-import { useNavigate } from 'react-router';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
     let [username, setUsername] = useState('');
@@ -17,9 +17,11 @@ const Login = () => {
                 username,
                 password,
             });
-      
+
             console.log('Успішна авторизація:', response.data);
             setToken(response.data.token);
+            navigate('/dashboard'); 
+
         } catch (error) {
             console.error('Помилка авторизації:', error);
         }
